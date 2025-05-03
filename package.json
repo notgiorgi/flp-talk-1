@@ -1,0 +1,29 @@
+{
+  "name": "vibehack-talk",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^1.2.10",
+    "@ai-sdk/openai": "^1.3.21",
+    "@hono/node-server": "^1.14.1",
+    "@mastra/core": "^0.9.1",
+    "@mastra/libsql": "^0.0.1",
+    "@mastra/memory": "^0.3.1",
+    "@modelcontextprotocol/sdk": "^1.11.0",
+    "ai": "^4.3.13",
+    "fetch-to-node": "^2.1.0",
+    "hono": "^4.7.8",
+    "openai": "^4.97.0",
+    "zod": "^3.24.3"
+  },
+  "scripts": {
+    "mastra": "cd src/mastra-agents && npm run dev",
+    "mastra-mcp": "cd src/mastra-agents-mcp && npm run dev"
+  }
+}
