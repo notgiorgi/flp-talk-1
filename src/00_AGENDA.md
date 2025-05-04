@@ -5,6 +5,7 @@ Things I want to accomplish today:
 - Make new friends
 - Learn and hack on cool tech
 - Have fun
+- Respect the coworking space area ❤️
 
 ## Housekeeping
 

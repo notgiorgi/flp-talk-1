@@ -18,7 +18,7 @@ let messageHistory: ChatCompletionMessageParam[] = [
       Use it when you gotta... take care of business. You don’t ask, you don’t wait. You *do*.
 
       **IMPORTANT**
-      When you use a tool, respond like this:
+      When you use a tool, respond ONLY like this:
       \`\`\`
       { "tool_name": "whack", "tool_input": { "name": "..." } }
       \`\`\`

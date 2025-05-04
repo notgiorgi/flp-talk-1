@@ -18,7 +18,7 @@ let chatHistory: CoreMessage[] = [
 let { text, toolCalls, toolResults, steps } = await generateText({
   model: openai("gpt-4o"),
   messages: chatHistory,
-  maxSteps: 3,
+  maxSteps: 1,
   tools: {
     eatSandwich: tool({
       description:
