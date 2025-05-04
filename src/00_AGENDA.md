@@ -10,7 +10,7 @@ Things I want to accomplish today:
 
 - Connecting to WIFI:
   - connect to DBlock workspace @ Stamba
-  - access token is hackathon
+  - access token is HACKATHON
 
 ## Teams
 
