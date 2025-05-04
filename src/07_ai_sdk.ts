@@ -25,6 +25,7 @@ const [response1, response2, response3] = await Promise.all([
     model: anthropic("claude-3-5-sonnet-latest"),
     messages: chatHistory,
   }),
+  // Gen structured data
   generateObject({
     model: openai("gpt-4-turbo"),
     schema: z.object({
