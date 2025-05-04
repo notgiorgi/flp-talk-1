@@ -1,4 +1,7 @@
 // https://mastra.ai/en/docs/agents/overview
+// https://docs.pydantic.dev/latest/
+// https://www.langchain.com/
+// https://www.llamaindex.ai/
 import { openai } from "@ai-sdk/openai";
 import { Mastra } from "@mastra/core/mastra";
 import { createLogger } from "@mastra/core/logger";
