@@ -6,6 +6,16 @@ Things I want to accomplish today:
 - Learn and hack on cool tech
 - Have fun
 
+## Housekeeping
+
+- Connecting to WIFI:
+  - connect to DBlock workspace @ Stamba
+  - access token is hackathon
+
+## Teams
+
+- After the talk gather in this spot to find teams 👉
+
 ### My talk
 
 - Get you up and running with LLMs/Agents
