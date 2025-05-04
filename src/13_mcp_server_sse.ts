@@ -5,17 +5,6 @@ import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { z } from "zod";
 import { eatSandwich, trackDown, whack } from "./tools";
 
-/**
- * This example server demonstrates the deprecated HTTP+SSE transport
- * (protocol version 2024-11-05). It mainly used for testing backward compatible clients.
- *
- * The server exposes two endpoints:
- * - /mcp: For establishing the SSE stream (GET)
- * - /messages: For receiving client messages (POST)
- *
- */
-
-// Create an MCP server instance
 const getServer = () => {
   const server = new McpServer(
     {
@@ -25,6 +14,9 @@ const getServer = () => {
     { capabilities: { logging: {} } },
   );
 
+  // ==========================
+  // ======= YOUR TOOLS =======
+  // ==========================
   server.tool(
     "eat_sandwich",
     "Whenever you feel like you accomplished something, just take a break and eat a sandwich",
