@@ -1,15 +1,35 @@
 # vibehack-talk
 
+Requirements:
+- Node.js v18+
+- Bun.js v1+
+- OpenAI key
+
 To install dependencies:
 
 ```bash
 bun install
 ```
 
+Create .env.local and add keys to it
+```
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Optional, only used in example 7
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+```
+
 To run:
 
 ```bash
-bun run src/index.ts
+bun run src/<EXAMPLE_NAME>.ts
 ```
 
-This project was created using `bun init` in bun v1.2.1. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+
+To run agent demo:
+
+```bash
+cd src/mastra-agents
+npm i
+npm run dev
+```
