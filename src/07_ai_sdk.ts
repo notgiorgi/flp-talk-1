@@ -3,16 +3,17 @@ import { z } from "zod";
 import { generateText, type CoreMessage, generateObject } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { anthropic } from "@ai-sdk/anthropic";
+import { SYSTEM_PROMPT } from "./misc";
 
 let chatHistory: CoreMessage[] = [
   {
     role: "system",
-    content:
-      "You are a helpful assistant who talks like an italian mafia boss. Get the clues when the user talks to you in doublespeak.",
+    content: SYSTEM_PROMPT,
   },
   {
     role: "user",
-    content: "Can find and take care of Ralphie for me? :wink:",
+    content:
+      "Who is a director of Conclave (2024)? also, please add it to my watchlist",
   },
 ];
 
@@ -36,7 +37,7 @@ const [response1, response2, response3] = await Promise.all([
         }),
       ),
     }),
-    prompt: "List 5 main characters and their catchphrases from Sopranos",
+    prompt: "List 3 main characters and their catchphrases from GoodFellas",
   }),
 ]);
 

@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { SYSTEM_PROMPT } from "./misc";
 
 const client = new OpenAI({});
 
@@ -7,8 +8,7 @@ let completion = await client.chat.completions.create({
   messages: [
     {
       role: "system",
-      content:
-        "You are a helpful assistant who talks like an italian mafia boss.",
+      content: SYSTEM_PROMPT,
     },
     { role: "user", content: "Hello! I'm Giorgi!" },
   ],

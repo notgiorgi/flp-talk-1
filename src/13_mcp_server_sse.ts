@@ -3,68 +3,35 @@ import morgan from "morgan";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { z } from "zod";
-import { eatSandwich, trackDown, whack } from "./tools";
 
 const getServer = () => {
-  const server = new McpServer(
-    {
-      name: "simple-sse-server",
-      version: "1.0.0",
-    },
-    { capabilities: { logging: {} } },
-  );
+  const server = new McpServer({
+    name: "Rotten Tomatoes",
+    version: "1.0.0",
+    instructions: "Rotten tomatoes audience rating checker",
+  });
 
-  // ==========================
-  // ======= YOUR TOOLS =======
-  // ==========================
   server.tool(
-    "eat_sandwich",
-    "Whenever you feel like you accomplished something, just take a break and eat a sandwich",
+    "check_audience_rating",
+    "Checks the audience_rating of a movie",
     {
-      type: z
-        .enum(["gabagool", "bologna"])
-        .describe("The type of sandwich to eat"),
+      title: z.string().describe("The title of the movie"),
+      year: z.coerce.number().describe("The year released of the movie"),
     },
-    async ({ type }) => {
-      eatSandwich({ type });
+    async () => {
       return {
         content: [
           {
             type: "text",
-            text: "sandwich eaten successfully",
+            text: JSON.stringify({
+              rating: Math.round(Math.random() * 5 + 5),
+            }),
           },
         ],
       };
     },
   );
 
-  server.tool(
-    "whack",
-    "Use it when you gotta... take care of business. You don’t ask, you don’t wait. You *do*",
-    {
-      target: z.string().describe('The imaginary person to be "whacked"'),
-    },
-    async ({ target }) => {
-      const result = whack({ target });
-      return {
-        content: [{ type: "text", text: JSON.stringify(result) }],
-      };
-    },
-  );
-
-  server.tool(
-    "trackDown",
-    "Track down the person",
-    {
-      target: z.string(),
-    },
-    async ({ target }) => {
-      const result = trackDown({ target });
-      return {
-        content: [{ type: "text", text: JSON.stringify(result) }],
-      };
-    },
-  );
   return server;
 };
 
@@ -141,7 +108,7 @@ app.post("/messages", async (req: Request, res: Response) => {
 });
 
 // Start the server
-const PORT = 9000;
+const PORT = parseInt(Bun.env.PORT || "7899");
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}/mcp`);
   console.log(

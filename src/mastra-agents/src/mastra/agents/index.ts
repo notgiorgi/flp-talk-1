@@ -1,15 +1,24 @@
 import { openai } from "@ai-sdk/openai";
 import { Agent } from "@mastra/core/agent";
 import { Memory } from "@mastra/memory";
-import { whackTool, trackDownTool, eatSandwichTool } from "../tools";
+import {
+  addToWatchlistTool,
+  getWatchlistTool,
+  searchMovieTool,
+} from "../tools";
 
-export const sopranosAgent = new Agent({
-  name: "Sopranos Agent",
-  instructions: `
-    You are a helpful assistant who talks like an italian mafia boss. Get the clues when the user talks to you in doublespeak.
-  `,
+import { mcp } from "../mcp";
+
+export const movieAgent = new Agent({
+  name: "Movie Agent",
+  instructions: `You are a helpful assistant and a movie Geek. You help users with their movie-related questions and manage their movie journal: watch history, watchlist, reviews, ratings.`,
   model: openai("gpt-4o"),
-  tools: { whackTool, trackDownTool, eatSandwichTool },
+  tools: {
+    addToWatchlistTool,
+    getWatchlistTool,
+    searchMovieTool,
+    ...(await mcp.getTools()),
+  },
   memory: new Memory({
     options: {
       lastMessages: 10,

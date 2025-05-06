@@ -8,15 +8,22 @@ import { createLogger } from "@mastra/core/logger";
 import { LibSQLStore } from "@mastra/libsql";
 import { Agent } from "@mastra/core/agent";
 import { Memory } from "@mastra/memory";
-import { whackTool, trackDownTool, eatSandwichTool } from "./tools/mastra";
+import {
+  addToWatchlistTool,
+  getWatchlistTool,
+  searchMovieTool,
+} from "./tools/mastra-tools";
+import { SYSTEM_PROMPT } from "./misc";
 
-export const sopranosAgent = new Agent({
-  name: "Sopranos Agent",
-  instructions: `
-    You are a helpful assistant who talks like an italian mafia boss. Get the clues when the user talks to you in doublespeak.
-  `,
+export const movieAgent = new Agent({
+  name: "Movie Agent",
+  instructions: SYSTEM_PROMPT,
   model: openai("gpt-4o"),
-  tools: { whackTool, trackDownTool, eatSandwichTool },
+  tools: {
+    addToWatchlistTool,
+    getWatchlistTool,
+    searchMovieTool,
+  },
   memory: new Memory({
     options: {
       lastMessages: 10,
@@ -29,7 +36,7 @@ export const sopranosAgent = new Agent({
 });
 
 export const mastra = new Mastra({
-  agents: { sopranosAgent },
+  agents: { movieAgent },
   storage: new LibSQLStore({
     url: ":memory:",
   }),

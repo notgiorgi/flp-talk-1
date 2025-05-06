@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { getWatchlist, addToWatchlist, searchMovie } from "./raw";
+import { getWatchlist, addToWatchlist, searchMovie } from ".";
 
 export const getWatchlistTool = createTool({
   id: "get-watchlist",

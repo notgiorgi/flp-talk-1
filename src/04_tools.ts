@@ -3,17 +3,17 @@ import type {
   ChatCompletionTool,
   ChatCompletionMessageParam,
 } from "openai/resources.mjs";
+import { SYSTEM_PROMPT } from "./misc";
 const client = new OpenAI({});
 
 let chatHistory: ChatCompletionMessageParam[] = [
   {
     role: "system",
-    content:
-      "You are a helpful assistant who talks like an italian mafia boss. Get the clues when the user talks to you in doublespeak.",
+    content: SYSTEM_PROMPT,
   },
   {
     role: "user",
-    content: "Can find and take care of Ralphie for me? :wink:",
+    content: "Who is a director of Conclave (2024)?",
   },
 ];
 
@@ -21,35 +21,43 @@ let tools: ChatCompletionTool[] = [
   {
     type: "function",
     function: {
-      name: "track_down",
-      description: "Find the person",
+      name: "search_movie",
+      description:
+        "Find a movie by title and year, returning relevant information",
       parameters: {
         type: "object",
         properties: {
-          target: {
+          title: {
             type: "string",
-            description: "The imaginary person to be found",
+            description: "The title of the movie",
+          },
+          year: {
+            type: "number",
+            description: "The year the movie was released",
           },
         },
-        required: ["target"],
+        required: ["title"],
       },
     },
   },
   {
     type: "function",
     function: {
-      name: "whack",
-      description:
-        "Use it when you gotta... take care of business. You don’t ask, you don’t wait. You *do*",
+      name: "add_to_watchlist",
+      description: "Add a movie to the users watchlist",
       parameters: {
         type: "object",
         properties: {
-          target: {
+          title: {
             type: "string",
-            description: 'The imaginary person to be "whacked"',
+            description: "The title of the movie",
+          },
+          year: {
+            type: "number",
+            description: "The year the movie was released",
           },
         },
-        required: ["target"],
+        required: ["title", "year"],
       },
     },
   },
