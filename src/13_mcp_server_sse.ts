@@ -108,8 +108,12 @@ app.post("/messages", async (req: Request, res: Response) => {
 });
 
 // Start the server
-const PORT = parseInt(Bun.env.PORT || "7899");
+const PORT = parseInt(process.env.PORT || "7899");
 app.listen(PORT, () => {
+  if (global.Bun) {
+    console.warn("Bun detected, please use tsx to run this example:");
+    console.log(`./node_modules/.bin/tsx src/13_mcp_server_sse.ts`);
+  }
   console.log(`http://localhost:${PORT}/mcp`);
   console.log(
     "Add this mcp to corsor by adding this to your ~/.cursor/mcp.json",

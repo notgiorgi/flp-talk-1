@@ -33,3 +33,12 @@ cd src/mastra-agents
 npm i
 npm run dev
 ```
+
+
+To run mcp inspector:
+
+```bash
+# run mcp example first, then
+
+npx @modelcontextprotocol/inspector
+```
