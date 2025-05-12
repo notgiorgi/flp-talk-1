@@ -79,8 +79,6 @@ if (reply.tool_calls) {
   });
 
   reply.tool_calls.forEach((tool_call) => {
-    const args: { target: string } = JSON.parse(tool_call.function.arguments);
-
     switch (tool_call.function.name) {
       case "search_movie": {
         const parsedArgs = JSON.parse(tool_call.function.arguments);
