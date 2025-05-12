@@ -8,6 +8,7 @@ import type {
 import { z } from "zod";
 import { addToWatchlist, searchMovie, getWatchlist } from "./tools";
 import { Hono } from "hono";
+import { logger } from "hono/logger";
 import { toFetchResponse, toReqRes } from "fetch-to-node";
 
 const getServer = () => {
@@ -42,6 +43,7 @@ const getServer = () => {
 };
 
 const app = new Hono();
+app.use(logger());
 
 app.post("/mcp", async (c) => {
   const { req, res } = toReqRes(c.req.raw);
