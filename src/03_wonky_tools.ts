@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import type { ChatCompletionMessageParam } from "openai/resources.mjs";
-import { searchMovie, whack } from "./tools";
+import { searchMovie } from "./tools";
 import { SYSTEM_PROMPT } from "./misc";
 const client = new OpenAI({});
 
