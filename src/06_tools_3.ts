@@ -14,8 +14,7 @@ let chatHistory: ChatCompletionMessageParam[] = [
   },
   {
     role: "user",
-    content:
-      "Who is a director of Conclave (2024)? also, please add it to my watchlist",
+    content: "Who is a director of Conclave (2024)?",
   },
 ];
 
