@@ -14,7 +14,8 @@ let chatHistory: ChatCompletionMessageParam[] = [
   },
   {
     role: "user",
-    content: "Who is a director of Conclave (2024)? add it to my watchlist",
+    content:
+      "Who is a director of Conclave (2024)? please add it to my watchlist",
   },
 ];
 
@@ -70,8 +71,6 @@ let completion = await client.chat.completions.create({
   tools,
 });
 
-console.log("Completion:");
-console.dir(completion.choices[0].message, { depth: null });
 const reply = completion.choices[0].message;
 if (reply.tool_calls) {
   chatHistory.push({
@@ -81,8 +80,6 @@ if (reply.tool_calls) {
   });
 
   reply.tool_calls.forEach((tool_call) => {
-    const args: { target: string } = JSON.parse(tool_call.function.arguments);
-
     switch (tool_call.function.name) {
       case "search_movie": {
         const parsedArgs = JSON.parse(tool_call.function.arguments);
