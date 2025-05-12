@@ -53,4 +53,5 @@ let { text, toolCalls, toolResults, steps } = await generateText({
 });
 
 console.log(text);
+console.log(toolCalls);
 console.log("Iterations", steps.length);

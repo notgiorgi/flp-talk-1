@@ -117,3 +117,14 @@ while (reply.tool_calls) {
   });
   reply = completion.choices[0].message;
 }
+
+console.dir(chatHistory, { depth: null });
+
+completion = await client.chat.completions.create({
+  model: "gpt-4o",
+  messages: chatHistory,
+  tools,
+});
+reply = completion.choices[0].message;
+
+console.dir(completion.choices[0].message, { depth: null });
