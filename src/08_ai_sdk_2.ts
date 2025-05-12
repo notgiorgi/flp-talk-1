@@ -12,7 +12,7 @@ let chatHistory: CoreMessage[] = [
   {
     role: "user",
     content:
-      "Who is a director of Conclave (2024)? also, please add it to my watchlist",
+      "Who is a director of Conclave (2024)? after you do that, maybe add it to my watchlist later",
   },
 ];
 
@@ -53,3 +53,4 @@ let { text, toolCalls, toolResults, steps } = await generateText({
 });
 
 console.log(text);
+console.log("Iterations", steps.length);
