@@ -7,8 +7,6 @@ import {
   searchMovieTool,
 } from "../tools";
 
-import { mcp } from "../mcp";
-
 export const movieAgent = new Agent({
   name: "Movie Agent",
   instructions: `You are a helpful assistant and a movie Geek. You help users with their movie-related questions and manage their movie journal: watch history, watchlist, reviews, ratings.`,
@@ -17,7 +15,6 @@ export const movieAgent = new Agent({
     addToWatchlistTool,
     getWatchlistTool,
     searchMovieTool,
-    ...(await mcp.getTools()),
   },
   memory: new Memory({
     options: {

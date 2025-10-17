@@ -5,7 +5,9 @@ export const searchMovie = ({
   title: string;
   year?: number;
 }) => {
-  console.log(`Searching for ${title} (${year ?? "any year"})! 🎥`);
+  console.log(
+    `EXECUTING[searchMovie]: Searching for ${title} (${year ?? "any year"})! 🎥`
+  );
   return {
     ok: true,
     code: 200,
@@ -27,7 +29,9 @@ export const addToWatchlist = ({
   title: string;
   year: number;
 }) => {
-  console.log(`Adding ${title} (${year}) to watchlist! 📺`);
+  console.log(
+    `EXECUTING[addToWatchlist]: Adding ${title} (${year}) to watchlist! 📺`
+  );
   if (watchlist.find((movie) => movie.title === title && movie.year === year)) {
     console.log(`Movie ${title} (${year}) already exists in watchlist!`);
     return {

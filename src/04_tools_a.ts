@@ -40,27 +40,6 @@ let tools: ChatCompletionTool[] = [
       },
     },
   },
-  {
-    type: "function",
-    function: {
-      name: "add_to_watchlist",
-      description: "Add a movie to the users watchlist",
-      parameters: {
-        type: "object",
-        properties: {
-          title: {
-            type: "string",
-            description: "The title of the movie",
-          },
-          year: {
-            type: "number",
-            description: "The year the movie was released",
-          },
-        },
-        required: ["title", "year"],
-      },
-    },
-  },
 ];
 
 let completion = await client.chat.completions.create({

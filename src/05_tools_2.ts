@@ -72,6 +72,8 @@ let completion = await client.chat.completions.create({
 });
 
 const reply = completion.choices[0].message;
+console.dir(reply, { depth: null });
+
 if (reply.tool_calls) {
   chatHistory.push({
     role: "assistant",

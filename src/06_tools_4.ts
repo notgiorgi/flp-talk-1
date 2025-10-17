@@ -15,7 +15,7 @@ let chatHistory: ChatCompletionMessageParam[] = [
   {
     role: "user",
     content:
-      "Who is a director of Conclave (2024)? maybe add it to my watchlist",
+      "Who is a director of Conclave (2024)? if that movie exists, add it to my watchlist",
   },
 ];
 
@@ -74,7 +74,12 @@ let reply = completion.choices[0].message;
 
 while (reply.tool_calls) {
   console.log("🤖 Looping");
-  console.log(reply.tool_calls.map((tc) => tc.function.name));
+  console.log(
+    reply.tool_calls.map((tc) => ({
+      name: tc.function.name,
+      args: JSON.parse(tc.function.arguments),
+    }))
+  );
   chatHistory.push({
     role: "assistant",
     content: null,
@@ -110,6 +115,8 @@ while (reply.tool_calls) {
     }
   });
 
+  console.log("🤖 Calling LLM again...");
+  console.dir(chatHistory, { depth: null });
   completion = await client.chat.completions.create({
     model: "gpt-4o",
     messages: chatHistory,
@@ -118,6 +125,7 @@ while (reply.tool_calls) {
   reply = completion.choices[0].message;
 }
 
+console.log("🤖 Loop finished, final call to LLM...");
 console.dir(chatHistory, { depth: null });
 
 completion = await client.chat.completions.create({
